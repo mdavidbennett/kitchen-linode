@@ -132,7 +132,7 @@ module Kitchen
       private
 
       def compute
-        Fog::Compute.new(provider: :linode, linode_token: config[:linode_token], linode_endpoint: config[:linode_endpoint])
+        Fog::Compute.new(provider: :linode, linode_token: config[:linode_token], host: config[:linode_endpoint])
       end
 
       # generate possible label suffixes
