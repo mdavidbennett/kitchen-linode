@@ -32,6 +32,9 @@ module Kitchen
       kitchen_driver_api_version 2
       plugin_version Kitchen::Driver::LINODE_VERSION
 
+      default_config :linode_endpoint do
+        ENV["LINODE_ENDPOINT"] || nil
+      end
       default_config :linode_token do
         ENV["LINODE_TOKEN"]
       end
@@ -129,7 +132,7 @@ module Kitchen
       private
 
       def compute
-        Fog::Compute.new(provider: :linode, linode_token: config[:linode_token])
+        Fog::Compute.new(provider: :linode, linode_token: config[:linode_token], linode_endpoint: config[:linode_endpoint])
       end
 
       # generate possible label suffixes
